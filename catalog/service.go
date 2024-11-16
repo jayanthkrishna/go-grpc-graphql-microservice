@@ -1,6 +1,10 @@
 package catalog
 
-import "context"
+import (
+	"context"
+
+	"github.com/segmentio/ksuid"
+)
 
 type Service interface {
 	PostProduct(ctx context.Context, name, description string, price float64) (*Product, error)
@@ -30,6 +34,7 @@ func (s *catalogService) PostProduct(ctx context.Context, name, description stri
 		Name:        name,
 		Description: description,
 		Price:       price,
+		Id:          ksuid.New().String(),
 	}
 	err := s.repository.PutProduct(ctx, *product)
 
