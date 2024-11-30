@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -28,8 +29,9 @@ func main() {
 
 	retry.ForeverSleep(2*time.Second, func(_ int) (err error) {
 		r, err = order.NewPostgresRepository(cfg.DatabaseURL)
-
+		fmt.Println("Here")
 		if err != nil {
+			fmt.Println(err)
 			return err
 		}
 
@@ -43,6 +45,6 @@ func main() {
 
 	s := order.NewService(r)
 
-	log.Fatal(order.ListenGrpc(s, 8080))
+	log.Fatal(order.ListenGrpc(s, cfg.AccountURL, cfg.CatalogURL, 8080))
 
 }

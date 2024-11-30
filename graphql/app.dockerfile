@@ -1,12 +1,13 @@
 FROM golang:1.23 AS build
 # RUN apk --no-cache add gcc g++ make ca-certificates
-WORKDIR /go/src/github.com/jayanthkrishna/go-grpc-graphql-microservice
+WORKDIR /go/src/github.com/akhilsharma90/go-graphql-microservice
 COPY go.mod go.sum ./
 COPY vendor vendor
 COPY account account
 COPY catalog catalog
 COPY order order
-RUN GO111MODULE=on go build -mod vendor -o /go/bin/app ./order/cmd/order
+COPY graphql graphql
+RUN GO111MODULE=on go build -mod vendor -o /go/bin/app ./graphql
 
 FROM alpine:3.11
 WORKDIR /usr/bin

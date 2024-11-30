@@ -3,11 +3,13 @@ package main
 import (
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/jayanthkrishna/go-grpc-graphql-microservice/account"
+	"github.com/jayanthkrishna/go-grpc-graphql-microservice/catalog"
+	"github.com/jayanthkrishna/go-grpc-graphql-microservice/order"
 )
 
 type Server struct {
 	accountClient *account.Client
-	catalogClient *catalog.client
+	catalogClient *catalog.Client
 	orderClient   *order.Client
 }
 

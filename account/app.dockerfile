@@ -1,5 +1,5 @@
-FROM golang:1.13-alpine3.11 AS build
-RUN apk --no-cache add gcc g++ make ca-certificates
+FROM golang:1.23 AS build
+# RUN apk --no-cache add gcc g++ make ca-certificates
 WORKDIR /go/src/github.com/jayanthkrishna/go-grpc-graphql-microservice
 COPY go.mod go.sum ./
 COPY vendor vendor
